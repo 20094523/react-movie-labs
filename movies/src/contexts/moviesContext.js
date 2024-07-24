@@ -33,7 +33,7 @@ const MoviesContextProvider = (props) => {
       newWatchlist = [...watchlist];
     }
     setWatchlist(newWatchlist);
-    console.log('Watchlist:', newWatchlist);
+    console.log('Watchlist:', newWatchlist); 
   };
 
   const addReview = (movie, review) => {
@@ -48,6 +48,7 @@ const MoviesContextProvider = (props) => {
         addToFavorites,
         removeFromFavorites,
         addToWatchlist,
+        watchlist,
         addReview,
       }}
     >
@@ -55,5 +56,6 @@ const MoviesContextProvider = (props) => {
     </MoviesContext.Provider>
   );
 };
+
 
 export default MoviesContextProvider;

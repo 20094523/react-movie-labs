@@ -10,34 +10,40 @@ import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
-import img from '../../images/film-poster-placeholder.png'
+import img from '../../images/film-poster-placeholder.png';
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
-import React, { useContext  } from "react";
+import React, { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
 
 export default function MovieCard({ movie, action }) {
-  const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { favorites, watchlist, addToFavorites } = useContext(MoviesContext);
 
-  if (favorites.find((id) => id === movie.id)) {
-    movie.favorite = true;
-  } else {
-    movie.favorite = false
-  }
+  // Check if the movie is in favorites or watchlist
+  const isFavorite = favorites.includes(movie.id);
+  const isInWatchlist = watchlist.includes(movie.id);
 
   const handleAddToFavorite = (e) => {
     e.preventDefault();
     addToFavorites(movie);
   };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
-            <CardHeader
+      <CardHeader
         avatar={
-          movie.favorite ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
+          <>
+            {isFavorite && (
+              <Avatar sx={{ backgroundColor: 'red', marginRight: 1 }}>
+                <FavoriteIcon />
+              </Avatar>
+            )}
+            {isInWatchlist && (
+              <Avatar sx={{ backgroundColor: 'blue' }}>
+                <CalendarIcon />
+              </Avatar>
+            )}
+          </>
         }
         title={
           <Typography variant="h5" component="p">
