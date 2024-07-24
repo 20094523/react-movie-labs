@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PageTemplate from '../components/templateMovieListPage'
 import { getUpcoming } from "../api/tmdb-api";
+import AddToPlaylist from '../components/cardIcons/addToPlaylist'
 
 const HomePage = (props) => {
   const [movies, setMovies] = useState([]);
   const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
-
-  const addToFavorites = (movieId) => {
-    const updatedMovies = movies.map((m) =>
-      m.id === movieId ? { ...m, favorite: true } : m
-    );
-    setMovies(updatedMovies);
-  };
 
   useEffect(() => {
     getUpcoming().then(movies => {
@@ -25,7 +19,7 @@ const HomePage = (props) => {
       title='Upcoming Movies'
       movies={movies}
       action={(movie) => {
-        return <addToFavorites movie={movie} />
+        return <AddToPlaylist movie={movie} />
       }}
     />
   );
