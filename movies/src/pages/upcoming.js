@@ -24,7 +24,9 @@ const HomePage = (props) => {
     <PageTemplate
       title='Upcoming Movies'
       movies={movies}
-      selectFavorite={addToFavorites}
+      action={(movie) => {
+        return <addToFavorites movie={movie} />
+      }}
     />
   );
 };
