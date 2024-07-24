@@ -3,7 +3,7 @@ import { getUpcoming } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import AddToPlaylist from '../components/cardIcons/addToPlaylist';
+import AddToWatchlist from '../components/cardIcons/addToWatchlist';
 
 const UpcomingPage = (props) => {
   // Use useQuery hook for data fetching and caching
@@ -28,7 +28,7 @@ const UpcomingPage = (props) => {
       title="Upcoming Movies"
       movies={movies}
       action={(movie) => {
-        return <AddToPlaylist movie={movie} />
+        return <AddToWatchlist movie={movie} />
       }}
     />
   );
